@@ -27,6 +27,11 @@ class EncryptionEngineTest < Minitest::Test
     assert_equal 'Guvf vf zl frperg', output
   end
 
+  def test_it_decrypts_lowercases_using_rot13_alogorithm
+    output = @engine.decrypt('zl zrffntr')
+    assert_equal 'my message', output
+  end
+
   def test_it_decrypts_using_rot13_algorithm
     output = @engine.decrypt('Zl Zrffntr')
     assert_equal 'My Message', output

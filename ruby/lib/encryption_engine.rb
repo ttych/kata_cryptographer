@@ -14,18 +14,23 @@ class EncryptionEngine
     end.join
   end
 
-  def decrypt(_message)
-    'My Message'
+  def decrypt(message)
+    message.chars.map do |char|
+      _undo_rot(char)
+    end.join
   end
 
   private
 
-  def _do_rot(char)
+  def _do_rot(char, direction = 1)
     SUPPORTED_RANGES.each do |range|
       next unless range.include?(char)
-      new_char_ord = (range.index(char) + ROT13_SHIFT) % range.size
-      return range[new_char_ord]
+      return range[(range.index(char) + (ROT13_SHIFT * direction)) % range.size]
     end
     char
+  end
+
+  def _undo_rot(char)
+    _do_rot(char, -1)
   end
 end
