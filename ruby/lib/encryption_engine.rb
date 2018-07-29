@@ -3,8 +3,8 @@ require 'byebug'
 # EncryptionEngine to encrypt/decrypt messages
 # - use ROT13
 class EncryptionEngine
-  LOWERCASES = ('a'..'z').to_a
-  UPPERCASES = ('A'..'Z').to_a
+  SUPPORTED_RANGES = [('a'..'z').to_a,
+                      ('A'..'Z').to_a].freeze
 
   ROT13_SHIFT = 13
 
@@ -21,14 +21,11 @@ class EncryptionEngine
   private
 
   def _do_rot(char)
-    if LOWERCASES.include?(char)
-      new_char_ord = (LOWERCASES.index(char) + ROT13_SHIFT) % LOWERCASES.size
-      LOWERCASES[new_char_ord]
-    elsif UPPERCASES.include?(char)
-      new_char_ord = (UPPERCASES.index(char) + ROT13_SHIFT) % UPPERCASES.size
-      UPPERCASES[new_char_ord]
-    else
-      char
+    SUPPORTED_RANGES.each do |range|
+      next unless range.include?(char)
+      new_char_ord = (range.index(char) + ROT13_SHIFT) % range.size
+      return range[new_char_ord]
     end
+    char
   end
 end
