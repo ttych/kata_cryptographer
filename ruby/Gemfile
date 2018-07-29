@@ -1,0 +1,16 @@
+source 'https://rubygems.org'
+
+group :development do
+  gem 'byebug'
+  gem 'guard'
+  gem 'guard-bundler'
+  gem 'guard-minitest'
+  gem 'guard-reek'
+  gem 'guard-rubocop'
+  gem 'guard-shell'
+  gem 'rake'
+end
+
+group :test do
+  gem 'minitest', '>= 5.0.0'
+end
