@@ -9,15 +9,19 @@ class EncryptionEngineTest < Minitest::Test
     assert_equal 'zl zrffntr', output
   end
 
+  def test_it_encrypts_uppercases_using_rot13_algorithm
+    engine = EncryptionEngine.new
+    output = engine.encrypt('MY MESSAGE')
+    assert_equal 'ZL ZRFFNTR', output
+  end
+
   def test_it_encrypts_using_rot13_algorithm
-    skip
     engine = EncryptionEngine.new
     output = engine.encrypt('My Message')
     assert_equal 'Zl Zrffntr', output
   end
 
   def test_it_encrypts_a_complex_message_using_rot13_algorithm
-    skip
     engine = EncryptionEngine.new
     output = engine.encrypt('This is my secret')
     assert_equal 'Guvf vf zl frperg', output
