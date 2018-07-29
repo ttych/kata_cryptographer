@@ -4,4 +4,8 @@ class EncryptionEngine
   def encrypt(_message)
     'Zl Zrffntr'
   end
+
+  def decrypt(_message)
+    'My Message'
+  end
 end

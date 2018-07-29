@@ -8,4 +8,10 @@ class EncryptionEngineTest < Minitest::Test
     output = engine.encrypt('My Message')
     assert_equal 'Zl Zrffntr', output
   end
+
+  def test_it_decrypts_using_rot13_algorithm
+    engine = EncryptionEngine.new
+    output = engine.decrypt('Zl Zrffntr')
+    assert_equal 'My Message', output
+  end
 end
